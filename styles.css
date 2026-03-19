@@ -1,0 +1,235 @@
+:root{
+  --bg: #ffffff;
+  --fg: #0f172a;
+  --muted: #64748b;
+
+  --brand: #4f46e5;
+  --brand-600: #4338ca;
+
+  --surface: #f1f5f9;
+  --border: #e2e8f0;
+  --card: #ffffff;
+
+  --gradient: linear-gradient(135deg, #4f46e5, #06b6d4);
+
+  --shadow-sm: 0 4px 10px rgba(2,6,23,0.05);
+  --shadow-md: 0 10px 30px rgba(2,6,23,0.08);
+  --shadow-lg: 0 20px 60px rgba(2,6,23,0.12);
+
+  --radius: 14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* ✅ CORREÇÃO: permite scroll */
+body {
+  overflow-x: hidden;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--fg);
+  background: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   GLOBAL
+============================================================ */
+
+img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+.container {
+  width: min(1200px, 90vw);
+  margin-inline: auto;
+}
+
+/* grid moderno */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+  background: rgba(255, 255, 255, 0.526);
+  backdrop-filter: blur(16px);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 70px;
+}
+
+.nav {
+  display: flex;
+  gap: .5rem;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--fg);
+  padding: .5rem .9rem;
+  border-radius: 999px;
+  font-weight: 500;
+  transition: 0.25s;
+}
+
+.nav a:hover {
+  background: var(--surface);
+}
+
+.nav a.cta {
+  background: var(--gradient);
+  color: white;
+}
+
+.nav a.cta:hover {
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   HERO COM VÍDEO
+============================================================ */
+
+.hero-video {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.video-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: -2;
+}
+
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.2),
+    rgba(0,0,0,0.6)
+  );
+  z-index: -1;
+}
+
+.hero-content {
+  position: absolute;
+  bottom: 12%;
+  left: 8%;
+  max-width: 650px;
+  color: #fff;
+}
+
+.hero-content h1 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 1.5rem;
+}
+
+.hero-btn {
+  display: inline-block;
+  padding: 14px 22px;
+  border-radius: 999px;
+  background: var(--gradient);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.hero-btn:hover {
+  transform: translateY(-3px);
+}
+
+/* ============================================================
+   CARDS
+============================================================ */
+
+.card {
+  background: var(--card);
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: 0.3s;
+  border: 1px solid var(--border);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 900px) {
+  .hero-video { height: 70vh; }
+
+  .hero-content {
+    left: 5%;
+    right: 5%;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+}
+
+/* ============================================================
+   SEÇÕES (AGORA VISÍVEIS ✅)
+============================================================ */
+
+.areas,
+.services,
+.cta,
+.contact,
+.sobre,
+.footer {
+  display: block; /* 🔥 antes estava NONE */
+}

@@ -1,0 +1,181 @@
+/* CSS do Menu Flutuante - SEM EXPANSÃO NO HOVER */
+
+/* Container principal */
+.floating-menu-container {
+  position: fixed;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+}
+
+/* Botão retangular - BRANCO */
+.menu-button {
+  width: 45px;
+  height: auto;
+  min-height: 210px;
+  background-color: #ffffff88;
+  border: 1px solid #e0e0e000;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px 0;
+  position: relative;
+  overflow: visible; /* Mudado de hidden para visible */
+}
+
+/* Container das linhas */
+.menu-lines-container {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 15px;
+}
+
+/* Cada linha individual */
+.menu-line {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  transition: none; /* Remove todas as transições de movimento */
+  cursor: pointer;
+  border-radius: 25px;
+}
+
+/* Bolinhas - CINZAS (sempre visíveis) */
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: #ffffffb4;
+  border-radius: 50%;
+  display: block;
+  transition: background-color 0.2s ease, transform 0.2s ease; /* Apenas cor e scale */
+  flex-shrink: 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Palavras do menu - inicialmente escondidas */
+.menu-word {
+  color: #333333;
+  font-size: 16px;
+  font-weight: 400;
+  transition: color 0.2s ease, font-weight 0.2s ease; /* Apenas cor e peso da fonte */
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  width: 0;
+  text-decoration: none;
+}
+
+/* Botão em hover - EXPANDE PARA A ESQUERDA */
+.floating-menu-container:hover .menu-button {
+  width: 220px;
+  background-color: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  border-color: #d0d0d0;
+}
+
+/* Quando expande, mostra as palavras - SEM MOVIMENTO */
+.floating-menu-container:hover .menu-word {
+  opacity: 1;
+  visibility: visible;
+  width: auto;
+  /* Removido o margin-left que causava movimento */
+}
+
+/* Delay diferente para cada palavra (apenas aparecimento) */
+.floating-menu-container:hover .menu-line:nth-child(1) .menu-word { transition-delay: 0.05s; }
+.floating-menu-container:hover .menu-line:nth-child(2) .menu-word { transition-delay: 0.1s; }
+.floating-menu-container:hover .menu-line:nth-child(3) .menu-word { transition-delay: 0.15s; }
+.floating-menu-container:hover .menu-line:nth-child(4) .menu-word { transition-delay: 0.2s; }
+.floating-menu-container:hover .menu-line:nth-child(5) .menu-word { transition-delay: 0.25s; }
+
+/* HOVER - APENAS MUDANÇA DE COR, SEM EXPANSÃO */
+
+.menu-line:hover .menu-word {
+  font-weight: 700; /* Apenas negrito */
+  color: #000000;
+  /* Removido qualquer transform ou movimento */
+}
+
+.menu-line:hover .dot {
+  background-color: #3C8E9D; /* Apenas muda para azul */
+  transform: scale(1.1); /* Leve aumento na bolinha (opcional, pode remover se preferir) */
+  box-shadow: 0 0 8px #3C8E9D;
+}
+
+/* Garantia de que não há movimento */
+.menu-line,
+.menu-word,
+.dot {
+  transform: none !important; /* Força nenhuma transformação de movimento */
+}
+
+/* Se preferir SEM aumento na bolinha, use esta versão: */
+.menu-line:hover .dot {
+  background-color: #3C8E9D;
+  transform: none; /* Sem aumento */
+  box-shadow: 0 0 8px #3C8E9D;
+}
+
+/* Animação apenas para o botão expandir */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    right: 0;
+  }
+  to {
+    opacity: 1;
+    right: 30px;
+  }
+}
+
+.floating-menu-container {
+  animation: slideIn 0.5s ease;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .floating-menu-container {
+    right: 15px;
+  }
+  
+  .menu-button {
+    width: 50px;
+    min-height: 220px;
+  }
+  
+  .floating-menu-container:hover .menu-button {
+    width: 190px;
+  }
+  
+  .dot {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .menu-word {
+    font-size: 14px;
+  }
+  
+  .menu-lines-container {
+    gap: 15px;
+    padding: 0 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-menu-container {
+    display: none;
+  }
+}
+
+.nav-toggle {
+  display: none;
+}
