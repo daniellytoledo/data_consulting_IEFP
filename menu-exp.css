@@ -14,7 +14,7 @@
   width: 45px;
   height: auto;
   min-height: 210px;
-  background-color: #ffffff88;
+  background-color: #ffffffd4;
   border: 1px solid #e0e0e000;
   border-radius: 30px;
   cursor: pointer;
@@ -52,7 +52,7 @@
 .dot {
   width: 12px;
   height: 12px;
-  background-color: #ffffffb4;
+  background-color: #3c8f9ddd;
   border-radius: 50%;
   display: block;
   transition: background-color 0.2s ease, transform 0.2s ease; /* Apenas cor e scale */
@@ -97,7 +97,6 @@
 .floating-menu-container:hover .menu-line:nth-child(5) .menu-word { transition-delay: 0.25s; }
 
 /* HOVER - APENAS MUDANÇA DE COR, SEM EXPANSÃO */
-
 .menu-line:hover .menu-word {
   font-weight: 700; /* Apenas negrito */
   color: #000000;
@@ -117,11 +116,55 @@
   transform: none !important; /* Força nenhuma transformação de movimento */
 }
 
-/* Se preferir SEM aumento na bolinha, use esta versão: */
+/* Versão sem aumento na bolinha */
 .menu-line:hover .dot {
   background-color: #3C8E9D;
   transform: none; /* Sem aumento */
   box-shadow: 0 0 8px #3C8E9D;
+}
+
+/* MUDANÇA DE COR QUANDO O BOTÃO PASSAR DO VÍDEO */
+.menu-button.bg-change {
+  background-color: #3c8f9dcf;
+  border-color: #3c8f9d00;
+}
+
+/* Quando expandido, mantém a mesma cor de fundo */
+.floating-menu-container:hover .menu-button.bg-change {
+  background-color: #3C8E9D;
+  border-color: #3C8E9D;
+}
+
+/* Palavras ficam brancas quando o fundo mudar */
+.menu-button.bg-change .menu-word {
+  color: #ffffff;
+}
+
+/* Bolinhas ficam brancas quando o fundo mudar (estado normal) */
+.menu-button.bg-change .dot {
+  background-color: #ffffff;
+}
+
+/* Hover dentro do botão com fundo colorido */
+.menu-button.bg-change .menu-line:hover .menu-word {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.menu-button.bg-change .menu-line:hover .dot {
+  background-color: #ffffff;
+  transform: scale(1.1);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+/* Quando expandido com fundo colorido */
+.floating-menu-container:hover .menu-button.bg-change .menu-word {
+  color: #ffffff;
+}
+
+/* Garantir que as palavras expandidas fiquem brancas */
+.floating-menu-container:hover .menu-button.bg-change .menu-word {
+  color: #ffffff;
 }
 
 /* Animação apenas para o botão expandir */
