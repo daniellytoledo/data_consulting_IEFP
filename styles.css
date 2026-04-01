@@ -54,6 +54,7 @@ img {
   margin-inline: auto;
 }
 
+
 /* grid moderno */
 .grid-3 {
   display: grid;
@@ -112,6 +113,43 @@ img {
 
 .nav a.cta:hover {
   transform: translateY(-2px);
+}
+
+/* ============================================================
+   HEADER COM TRANSIÇÃO DE COR (MODIFICADO)
+============================================================ */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+  background: rgba(255, 255, 255, 0.778);
+  backdrop-filter: blur(16px);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Classe que será adicionada quando passar COMPLETAMENTE do vídeo */
+.site-header.scrolled {
+  background: #3c8e9d;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajuste para o texto do nav quando o header mudar de cor */
+.site-header.scrolled .nav a {
+  color: white;
+}
+
+/* CORREÇÃO: NÃO ALTERA A COR DA LOGO */
+.site-header.scrolled .brand img {
+  /* Remove qualquer filtro que alterasse a cor da logo */
+  filter: none;
+}
+
+.site-header.scrolled .nav a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
 }
 
 /* ============================================================
@@ -198,6 +236,15 @@ img {
 .card:hover {
   transform: translateY(-6px);
   box-shadow: 0 4px 12px rgba(48, 129, 143, 0.559);
+}
+
+footer {
+  background: #3c8f9dc7;
+  padding: 1rem 0;
+  margin-top: 4rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  color: white;
 }
 
 /* ============================================================
