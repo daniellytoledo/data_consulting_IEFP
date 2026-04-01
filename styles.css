@@ -238,6 +238,35 @@ img {
   box-shadow: 0 4px 12px rgba(48, 129, 143, 0.559);
 }
 
+.card-2 {
+  background: var(--card);
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: 0.3s;
+  border: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.card-2:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 4px 12px rgba(48, 129, 143, 0.559);
+}
+
+button {
+  background: none;
+  width: 150px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s;
+  flex-shrink: 0;
+}
+
+
 footer {
   background: #3c8f9dc7;
   padding: 1rem 0;
