@@ -29,7 +29,6 @@ html, body {
   height: 100%;
 }
 
-/* ✅ CORREÇÃO: permite scroll */
 body {
   overflow-x: hidden;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -266,6 +265,9 @@ button {
   flex-shrink: 0;
 }
 
+.mais {
+  color: #00887a;
+}
 
 footer {
   background: #3c8f9dc7;
@@ -297,15 +299,6 @@ footer {
   }
 }
 
-/* ============================================================
-   SEÇÕES (AGORA VISÍVEIS ✅)
-============================================================ */
-
-.areas,
-.services,
-.cta,
-.contact,
-.sobre,
 .footer {
   display: block; /* 🔥 antes estava NONE */
 }
