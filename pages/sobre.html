@@ -1,36 +1,425 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre Nós</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre Nós — InSyte Consultoria</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="sobre.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark: #0d0d0f;
+      --mid: #1a1a1e;
+      --accent: rgba(48, 129, 143, 0.559);
+      --accent-dim: rgba(48, 129, 143, 0.64);
+      --light: #f5f5f0;
+      --muted: #888885;
+      --card-bg: #111114;
+      --border: rgba(255,255,255,0.07);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: white;
+      color: black;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER (matching index) ── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(48, 129, 143, 0.84);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--light);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .brand span { color: var(--accent); }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.85rem;
+      margin-left: 2rem;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: rgb(4, 63, 57); }
+
+    /* ── PAGE INTRO ── */
+    .page-intro {
+      padding: 120px 2rem 60px;
+      text-align: center;
+    }
+
+    .page-intro .label {
+      font-size: 1rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .page-intro h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      max-width: 600px;
+      margin: 0 auto 1.2rem;
+    }
+
+    .page-intro p {
+      color: #5195A1;
+      font-size: 1rem;
+      max-width: 440px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── SPLIT SECTION ── */
+    .profiles {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+    }
+
+    @media (max-width: 768px) {
+      .profiles { grid-template-columns: 1fr; }
+    }
+
+    .profile-half {
+      position: relative;
+      padding: 4rem 3rem 5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .profile-half:first-child {
+      border-right: 1px solid var(--border);
+    }
+
+    .profile-half::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .profile-half:hover::before { opacity: 1; }
+
+    /* ── AVATAR ── */
+    .avatar-wrap {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--border);
+      transition: border-color 0.3s;
+    }
+
+    .profile-half:hover .avatar-wrap {
+      border-color: var(--accent);
+    }
+
+    .avatar-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .avatar-initials {
+      width: 100%;
+      height: 100%;
+      background: var(--mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #5195A1;
+    }
+
+    /* ── NAME + ROLE ── */
+    .profile-id h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.2rem;
+    }
+
+    .profile-id .role {
+      font-size: 0.82rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* ── SOCIAL LINKS ── */
+    .social-links {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.03em;
+      transition: all 0.2s;
+    }
+
+    .social-link:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--dark);
+    }
+
+    .social-link i { font-size: 0.85rem; }
+
+    /* ── INFO SECTIONS ── */
+    .info-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .info-block {
+      border-left: 2px solid var(--border);
+      padding-left: 1.1rem;
+      transition: border-color 0.3s;
+    }
+
+    .profile-half:hover .info-block {
+      border-left-color: var(--accent);
+    }
+
+    .info-block h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .info-block p {
+      font-size: 0.92rem;
+      color: rgb(0, 0, 0);
+      line-height: 1.75;
+    }
+
+    /* Placeholder text style */
+    .placeholder {
+      font-style: italic;
+      opacity: 0.5;
+    }
+
+    /* ── SKILLS TAGS ── */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.7rem;
+      background: #5195a1cd;
+      border: 1px solid rgba(200,245,63,0.2);
+      border-radius: 4px;
+      color: white;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── DIVIDER LINE ── */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: #5195A1;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── FADE-IN ANIMATION ── */
+    .profile-half {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    .profile-half:nth-child(2) { animation-delay: 0.15s; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
 
-    <div id="pic">
-        <div id="gessica">
-            <img src="../img/1.png" alt="gessica">
-            <p>Géssica Nonato</p>
-            <p><ul>
-                <p><a href="https://www.linkedin.com/in/g%C3%A9ssica-nonato-7b706093/" target="_blank" rel="external"><i class="fab fa-linkedin"></i></a> LinkedIn</p>
+  <!-- HEADER -->
+  <header class="site-header">
+    <a class="brand" href="../index.html">In<span>Syte</span></a>
+    <nav>
+      <a href="../index.html">Home</a>
+    </nav>
+  </header>
 
-                <p><a href="https://github.com/gessicanonato" target="_blank" rel="external"><i class="fab fa-github"></i></a> GitHub</p>
-            </ul></p>
-        </div>
-        <div id="dani">
-            <img src="../img/2.png" alt="dani">
-            <p>Danielly Toledo</p>
-            <p><ul>
-                <p><a href="https://www.linkedin.com/in/daniellytoledo/" target="_blank" rel="external"><i class="fab fa-linkedin"></i></a> LinkedIn</p>
+  <!-- PAGE INTRO -->
+  <div class="page-intro">
+    <p class="label">A equipa</p>
+    <h1>Quem somos</h1>
+    <p>As pessoas por detrás dos dados — analistas, estrategas e curiosas de formação.</p>
+  </div>
 
-                <p><a href="https://github.com/daniellytoledo" target="_blank" rel="external"><i class="fab fa-github"></i></a> GitHub</p>
-            </ul></p>
+  <hr class="section-divider">
+
+  <!-- SPLIT PROFILES -->
+  <section class="profiles">
+
+    <!-- ── GÉSSICA ── -->
+    <div class="profile-half" id="gessica">
+
+      <div class="avatar-wrap">
+        <img src="../img/1.png" alt="Foto de Géssica Nonato" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="avatar-initials" style="display:none">GN</div>
+      </div>
+
+      <div class="profile-id">
+        <h2>Géssica Nonato</h2>
+        <p class="role">Cientista de Dados &amp; Consultora</p>
+      </div>
+
+      <div class="social-links">
+        <a class="social-link" href="https://www.linkedin.com/in/g%C3%A9ssica-nonato-7b706093/" target="_blank" rel="noopener">
+          <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+        <a class="social-link" href="https://github.com/gessicanonato" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+      </div>
+
+      <div class="info-grid">
+
+        <div class="info-block">
+          <h3>Sobre mim</h3>
+          <p class="placeholder">Formada em Ciência Contábeis e cursando CET em Gestão de Aplicações de Informática, com certificações em Análise de Dados com Power BI e Python. </p>
         </div>
+
+        <div class="info-block">
+          <h3>Ferramentas &amp; tecnologias</h3>
+          <div class="tags">
+            <span class="tag">Power BI</span>
+            <span class="tag">IA</span>
+            <span class="tag">Storytelling</span>
+            <span class="tag">Python</span>
+            <span class="tag">SQL</span>
+            <span class="tag">Excel</span>
+            <!-- Adiciona ou remove tags conforme a tua realidade -->
+          </div>
+        </div>
+
+      </div>
     </div>
+
+    <!-- ── DANIELLY ── -->
+    <div class="profile-half" id="dani">
+
+      <div class="avatar-wrap">
+        <img src="../img/2.png" alt="Foto de Danielly Toledo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="avatar-initials" style="display:none">DT</div>
+      </div>
+
+      <div class="profile-id">
+        <h2>Danielly Toledo</h2>
+        <p class="role">Analista de Dados &amp; Desenvolvedora de Software</p>
+      </div>
+
+      <div class="social-links">
+        <a class="social-link" href="https://www.linkedin.com/in/daniellytoledo/" target="_blank" rel="noopener">
+          <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+        <a class="social-link" href="https://github.com/daniellytoledo" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+      </div>
+
+      <div class="info-grid">
+
+        <div class="info-block">
+          <h3>Sobre mim</h3>
+          <p class="placeholder">Formada em Análise e Desenvolvimento de Sistemas, CET em Gestão de Aplicações de Informática, com certificação em SQL Database Specialist, Power BI e Python, possui experiência relevante em Análise de Dados e Desenvolvimento de Softwares.</p>
+        </div>
+
+        <div class="info-block">
+          <h3>Ferramentas &amp; tecnologias</h3>
+          <div class="tags">
+            <span class="tag">Power BI</span>
+            <span class="tag">SQL</span>
+            <span class="tag">Python</span>
+            <span class="tag">IA</span>
+            <span class="tag">Desenvolvimento de Software</span>
+            <!-- Adiciona ou remove tags conforme a tua realidade -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <footer>
+    CET em Aplicações de Informática de Gestão :: Negócios | Géssica &amp; Danielly ©
+  </footer>
 
 </body>
 </html>
