@@ -121,6 +121,22 @@ section {
     box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
+ .conclusao {
+    background-color: #e8f0f2;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 30px;
+    border-left: 4px solid #3d8a96;
+}
+.conclusao h2 {
+    color: #2c6b7a;
+    border-left: none;
+    padding-left: 0;
+}
+.conclusao p {
+    color: #2c5a66;
+}
+
 /* IMPRESSÃO PARA PDF */
 @media print {
 

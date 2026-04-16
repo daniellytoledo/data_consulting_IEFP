@@ -102,7 +102,7 @@ img {
 }
 
 .nav a:hover {
-  background: var(--surface);
+  background: #5195a1ac;
 }
 
 .nav a.cta {
