@@ -107,4 +107,4 @@ Usei `backdrop-filter: blur()` para criar o efeito de vidro fosco no header, tor
 
 ---
 
-*CET em Aplicações de Informática de Gestão · Negócios · 2024/2025*
+*CET em Aplicações de Informática de Gestão · UFCD Negócios · 2026*
