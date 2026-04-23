@@ -68,7 +68,7 @@ body {
   top: 0;
   width: 100%;
   z-index: 99;
-  background: rgba(7,18,16,0.82);
+  background: rgba(0, 136, 122, 0.068);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
   transition: background 0.3s ease, box-shadow 0.3s ease;
@@ -229,7 +229,7 @@ body {
 }
 
 .card {
-  background: var(--card);
+  background: rgba(255, 255, 255, 0.863);
   color: var(--card-text);
   padding: 2rem;
   border-radius: var(--radius);
@@ -266,7 +266,7 @@ body {
 }
 
 .card-2 {
-  background: var(--card);
+  background: rgba(255, 255, 255, 0.863);
   color: var(--card-text);
   padding: 1.8rem 2rem;
   border-radius: var(--radius);
@@ -318,7 +318,7 @@ body {
 footer {
   position: relative;
   z-index: 1;
-  background: rgba(0,136,122,0.15);
+  background: rgba(0, 136, 122, 0.068);
   border-top: 1px solid var(--border);
   padding: 1.4rem 0;
   text-align: center;
