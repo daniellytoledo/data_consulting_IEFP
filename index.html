@@ -17,7 +17,7 @@
 
 <body>
 
-  <!-- CANVAS BACKGROUND -->
+  <!-- CANVAS BACKGROUND (por baixo de tudo exceto o vídeo) -->
   <canvas id="bg-canvas"></canvas>
 
   <!-- HEADER -->
@@ -28,6 +28,7 @@
         <a href="index.html">Home</a>
         <a href="pages/contactos.html">Contacto</a>
         <a href="pages/negocios.html">Criar e Desenvolver Ideias de Negócios</a>
+        <a href="pages/plano.html">Plano de Negócios</a>
       </nav>
     </div>
   </header>
@@ -35,13 +36,16 @@
   <!-- HOME ANCHOR -->
   <section id="home"></section>
 
-  <!-- MENU FLUTUANTE -->
-
-  <!-- HERO — sem vídeo, fundo escuro com canvas -->
-  <section class="hero-static">
+  <!-- HERO COM VÍDEO -->
+  <section class="hero-video">
+    <video autoplay muted loop playsinline class="video-bg">
+      <source src="video/Smart City Digital City Video - Smart City Metro (1080p, h264).mp4" type="video/mp4">
+      O seu navegador não suporta vídeos HTML5.
+    </video>
+    <div class="video-overlay"></div>
     <div class="hero-content">
       <p class="hero-label">Consultoria de Dados</p>
-      <h1>Consultoria para elevar<br>Pessoas, Processos<br>e Privacidade</h1>
+      <h1>Consultoria para elevar Pessoas, Processos e Privacidade</h1>
       <p class="hero-sub">Apoiamos a sua organização a transformar dados em decisões estratégicas.</p>
     </div>
   </section>
@@ -171,29 +175,21 @@
   <script src="js/desc_flutuante.js"></script>
   <script src="js/chat.js"></script>
 
-  <!-- CANVAS BACKGROUND SCRIPT -->
+  <!-- CANVAS SCRIPT -->
   <script>
   (function () {
     const canvas = document.getElementById('bg-canvas');
     const ctx = canvas.getContext('2d');
     const NODE_COUNT = 60, MAX_DIST = 150;
     let W, H, nodes;
-
     function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
-
-    function makeNode() {
-      return { x: Math.random()*W, y: Math.random()*H, vx:(Math.random()-.5)*.3, vy:(Math.random()-.5)*.3, r:Math.random()*2+1, pulse:Math.random()*Math.PI*2 };
-    }
-
+    function makeNode() { return { x:Math.random()*W, y:Math.random()*H, vx:(Math.random()-.5)*.3, vy:(Math.random()-.5)*.3, r:Math.random()*2+1, pulse:Math.random()*Math.PI*2 }; }
     function init() { resize(); nodes = Array.from({length:NODE_COUNT}, makeNode); }
-
-    function draw(t) {
+    function draw() {
       ctx.clearRect(0,0,W,H);
-      // subtle grid
       ctx.strokeStyle='rgba(0,136,122,0.05)'; ctx.lineWidth=1;
       for(let i=0;i<=16;i++){const y=(H/16)*i;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
       for(let i=0;i<=22;i++){const x=(W/22)*i;ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
-      // connections
       for(let i=0;i<nodes.length;i++){
         const n=nodes[i]; n.x+=n.vx; n.y+=n.vy;
         if(n.x<0||n.x>W)n.vx*=-1; if(n.y<0||n.y>H)n.vy*=-1;
@@ -202,7 +198,6 @@
           if(d<MAX_DIST){ctx.strokeStyle=`rgba(0,168,150,${(1-d/MAX_DIST)*.22})`;ctx.lineWidth=.7;ctx.beginPath();ctx.moveTo(n.x,n.y);ctx.lineTo(m.x,m.y);ctx.stroke();}
         }
       }
-      // nodes
       for(const n of nodes){
         n.pulse+=.018; const g=.4+.35*Math.sin(n.pulse);
         const rg=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,n.r*5);
@@ -212,7 +207,6 @@
       }
       requestAnimationFrame(draw);
     }
-
     window.addEventListener('resize', resize);
     init(); requestAnimationFrame(draw);
   })();

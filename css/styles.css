@@ -4,10 +4,7 @@
 :root {
   --teal:        #00887A;
   --teal-light:  #00a896;
-  --teal-dim:    #006b60;
-  --teal-glow:   rgba(0,136,122,0.18);
   --dark:        #071210;
-  --dark-mid:    #0d1e1c;
   --white:       #ffffff;
   --muted:       rgba(255,255,255,0.5);
   --border:      rgba(0,136,122,0.22);
@@ -15,11 +12,9 @@
   --card-text:   #0f172a;
   --radius:      14px;
   --shadow-sm:   0 4px 10px rgba(0,0,0,0.12);
-  --shadow-md:   0 10px 30px rgba(0,0,0,0.18);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html, body { height: 100%; }
 
 body {
@@ -68,7 +63,7 @@ body {
   top: 0;
   width: 100%;
   z-index: 99;
-  background: rgba(0, 136, 122, 0.068);
+  background: rgba(0,136,122,0.12);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
   transition: background 0.3s ease, box-shadow 0.3s ease;
@@ -111,7 +106,7 @@ body {
   color: var(--white);
 }
 
-/* Remove scrolled class effect — header always dark */
+/* Header sempre escuro — sem mudança ao rolar */
 .site-header.scrolled {
   background: rgba(7,18,16,0.95);
   box-shadow: 0 2px 12px rgba(0,0,0,0.25);
@@ -121,29 +116,55 @@ body {
 .site-header.scrolled .nav a:hover { color: var(--white); }
 
 /* ============================================================
-   HERO ESTÁTICO (sem vídeo)
+   HERO COM VÍDEO
 ============================================================ */
-.hero-static {
+.hero-video {
   position: relative;
   z-index: 1;
   width: 100%;
-  min-height: 100vh;
-  display: flex;
-  align-items: flex-end;
-  padding-bottom: 10%;
+  height: 100vh;
+  overflow: hidden;
 }
 
+.video-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: -2;
+}
+
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.25),
+    rgba(7,18,16,0.75)
+  );
+  z-index: -1;
+}
+
+/* Título alinhado à esquerda na parte inferior do vídeo */
 .hero-content {
-  position: relative;
-  z-index: 2;
-  padding: 0 8%;
-  max-width: 700px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* antes: center */
+  text-align: left;        /* antes: center */
+  padding: 0 2rem 8%;
   color: var(--white);
 }
 
 .hero-label {
   font-size: 0.72rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--teal-light);
   margin-bottom: 1rem;
@@ -151,21 +172,24 @@ body {
 
 .hero-content h1 {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(2.8rem, 5.5vw, 4.2rem);
+  font-size: clamp(2.4rem, 5vw, 4rem);
   font-weight: 800;
-  line-height: 1.07;
+  line-height: 1.08;
   letter-spacing: -0.03em;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1rem;
+  max-width: 800px;
 }
 
 .hero-sub {
   font-size: 1.1rem;
   color: rgba(255,255,255,0.7);
+  max-width: 520px;
 }
 
+
 @media (max-width: 900px) {
-  .hero-static { min-height: 80vh; padding-bottom: 12%; }
-  .hero-content h1 { font-size: 2.2rem; }
+  .hero-video { height: 70vh; }
+  .hero-content h1 { font-size: 2rem; }
   .hero-sub { font-size: 1rem; }
 }
 
@@ -187,7 +211,7 @@ body {
 
 .quote blockquote p:first-child {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
   font-weight: 700;
   color: var(--teal-light);
   margin-bottom: 1.2rem;
@@ -229,7 +253,7 @@ body {
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.863);
+  background: var(--card);
   color: var(--card-text);
   padding: 2rem;
   border-radius: var(--radius);
@@ -266,7 +290,7 @@ body {
 }
 
 .card-2 {
-  background: rgba(255, 255, 255, 0.863);
+  background: var(--card);
   color: var(--card-text);
   padding: 1.8rem 2rem;
   border-radius: var(--radius);
@@ -318,14 +342,14 @@ body {
 footer {
   position: relative;
   z-index: 1;
-  background: rgba(0, 136, 122, 0.068);
+  background: rgba(0,136,122,0.12);
   border-top: 1px solid var(--border);
   padding: 1.4rem 0;
   text-align: center;
-  color: rgba(255,255,255,0.7);
+  color: rgba(255,255,255,0.6);
   font-size: 0.78rem;
   letter-spacing: 0.04em;
-  margin-top: 0;
+  font-family: 'DM Sans', sans-serif;
 }
 
 /* ============================================================

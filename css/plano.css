@@ -2,18 +2,11 @@
 
 body {
     font-family: "Segoe UI", Arial, sans-serif;
-    background-color: #071210;
+    background-color: #ecefee;
     margin: 0;
     padding: 40px 0;
     display: flex;
     justify-content: center;
-}
-
-#bg-canvas {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
 }
 
 /* Conteúdo centralizado como página */
